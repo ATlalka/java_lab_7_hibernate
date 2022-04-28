@@ -1,0 +1,32 @@
+<Configuration>
+
+    <CustomLevels>
+        <CustomLevel name="Income" intLevel="101" />
+        <CustomLevel name="Shortgage" intLevel="102" />
+    </CustomLevels>
+
+
+    <Appenders>
+        <Console name="info-stdout-message">
+            <PatternLayout pattern="[%logger{36}] %message %n" />
+            <ThresholdFilter level="info"/>
+        </Console>
+
+        <File name="income-appender" fileName="logs/incomes.log">
+            <PatternLayout pattern="%d{HH:mm:ss dd.mm} [%-5level] - %msg %n" />
+            <LevelRangeFilter minLevel="Income" maxLevel="Income" onMatch="ACCEPT" onMismatch="DENY"/>
+        </File>
+        <File name="shortgage-appender" fileName="logs/shortgages.log">
+            <PatternLayout pattern="%d{HH:mm:ss dd.mm} [%-5level] - %msg %n" />
+            <LevelRangeFilter minLevel="Shortgage" maxLevel="Shortgage" onMatch="ACCEPT" onMismatch="DENY"/>
+        </File>
+    </Appenders>
+
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="info-stdout-message"/>
+            <AppenderRef ref="income-appender"/>
+            <AppenderRef ref="shortgage-appender"/>
+        </Root>
+    </Loggers>
+</Configuration>
